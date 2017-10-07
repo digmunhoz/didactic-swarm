@@ -1,6 +1,6 @@
 # Docker Swarm First Steps
 
-## Labs: 
+<!-- ## Labs: 
 
 - Testar acesso direto pelo IP dos workers
 	Resultado: Acesso funciona sem precisar ir pelo master
@@ -15,23 +15,23 @@
 - Queda de container de um serviço qualquer
 	Resultado: Automaticamente um novo container é iniciado para o serviço
 - Testar backup
-- Simular perda do nó master (todos) e testar o restore em um servidor master novo
+- Simular perda do nó master (todos) e testar o restore em um servidor master novo -->
 
 ## Some Commands
 
-- docker node ls: Listar nodes
-- docker service ls: Listar serviços	
-- docker service rm SERVICO: Remover um serviço específico
-- docker node rm NODE: Remover um node específico
-- docker swarm join-token worker: Exibir o comando para um worker conseguir dar join no cluster
-- docker swarm leave: Sair do cluster de swarm (Worker)
-- docker service logs -f SERVICO: Ver logs de um determinado serviço
-- docker service inspect --pretty SERVICO: Ver informações relevantes do serviço
-- docker service update --image IMAGEM:VERSAO SERVICO: Atualizar imagem de um serviço
+- `docker node ls`: Show nodes
+- `docker service ls`: Show services
+- `docker service rm SERVICE`: Remove some specific service
+- `docker node rm NODE`: Delete node
+- `docker swarm join-token worker`: Show command used to worker join in the cluster
+- `docker swarm leave`: Leave the cluster
+- `docker service logs -f SERVICE`: Show logs from some service
+- `docker service inspect --pretty SERVICE`: Show information about some service
+- `docker service update --image IMAGE:VERSION SERVICE`: Update image on service
 
 ## Installing Docker on CentOS 7
 
-### Removendo pacotes antigos, caso haja
+### Removing old packages 
 ```
 yum remove docker \
            docker-common \
@@ -66,7 +66,7 @@ systemctl enable docker
 
 ## Installing Docker on Ubuntu
 
-### Atualizando cache dos repositorios
+### Update repository cache
 ```
 apt-get update
 ```
@@ -105,29 +105,29 @@ apt-get install -y docker-ce
 
 ## Create Docker Swarm Cluster
 
-#### Iniciar um cluster de Swarm (Executar no nó master)
+#### Iniciar um cluster de Swarm (Executed on master only)
 ```
 docker swarm init --advertise-addr MASTER_IP_ADDRESS
 ```
 
 ## Web Gui
 
-### Opcao 1 - Portainer
+### Option 1 - Portainer
 ```
 docker service create --name SwarmWebgui --publish 9000:9000 --constraint 'node.role == manager' --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock portainer/portainer -H unix:///var/run/docker.sock
 ```
 
-### Opcao 2 - Rancher
+### Option 2 - Rancher
 ```
 docker service create --name SwarmWebgui --publish 8080:8080 --constraint 'node.role == manager' rancher/server:stable
 ```
 
-### Opcao 3 - Shipyard
+### Option 3 - Shipyard
 ```
 curl -s https://shipyard-project.com/deploy | bash -s
 ```
 
-### Opçao 4 - Swarmpit
+### Option 4 - Swarmpit
 ```
 git clone https://github.com/swarmpit/swarmpit
 docker stack deploy -c swarmpit/docker-compose.yml swarmpit
@@ -135,7 +135,7 @@ docker stack deploy -c swarmpit/docker-compose.yml swarmpit
 
 ## Test of service
 
-### Criação do Serviço Nginx de teste
+### Create service named Nginx (Just for testing)
 ```
 docker service create --name Nginx \
 --replicas 1 \
@@ -161,3 +161,4 @@ nginx:latest
 - Start Docker on the new node. Unlock the swarm if necessary. 
 - Re-initialize the swarm using the following command: `docker swarm init --force-new-cluster`
 <!-- - Restart Docker service with command: `systemctl restart docker` -->
+
