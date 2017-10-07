@@ -164,3 +164,6 @@ nginx:latest
 - Re-initialize the swarm using the following command: `docker swarm init --force-new-cluster`
 <!-- - Restart Docker service with command: `systemctl restart docker` -->
 
+## Authors
+
+* **Diogo Munhoz** - *Initial work* - [digmunhoz](https://github.com/digmunhoz)
