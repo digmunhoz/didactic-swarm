@@ -1,5 +1,7 @@
 # Docker Swarm First Steps
 
+This project was created to help who wants to start using Docker Swarm.
+
 <!-- ## Labs: 
 
 - Testar acesso direto pelo IP dos workers
