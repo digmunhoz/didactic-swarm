@@ -152,7 +152,7 @@ nginx:latest
 
 ### Backup
 
-- Chose one of master node and stop docker service with comando: systemctl stop docker
+- Choose one master node and stop docker service with comando: systemctl stop docker
 - Backup swarm directory (/var/lib/docker/swarm)
 
 ### Restore
